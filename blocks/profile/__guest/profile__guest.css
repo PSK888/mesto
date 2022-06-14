@@ -1,0 +1,9 @@
+.profile__guest {
+    display: flex;
+  }
+  @media screen and (max-width: 940px) {
+    .profile__guest {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
