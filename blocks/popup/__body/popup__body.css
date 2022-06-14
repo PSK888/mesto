@@ -6,9 +6,8 @@
     color: black;
     background-color: white;
     border-radius: 10px;
-    text-align: center;  
-    position: relative;
-    
+    text-align: center;
+    position: relative;    
   }
 
   @media screen and (max-width: 700px){
@@ -16,6 +15,4 @@
     margin-top: 123px;
     width: 282px;
     height: 322px;
-  }
-    
-  }
+  }}
