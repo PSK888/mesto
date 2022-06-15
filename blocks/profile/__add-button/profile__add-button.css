@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: #000;
+    background-size: 22px;
     width: 150px;
     height: 50px;
     border: 2px #fff solid;
@@ -16,6 +17,7 @@
   }
   @media screen and (max-width: 940px) {
     .profile__add-button {
+      background-size: 16px;
       width: 282px;
       height: 50px;
       margin: 36px auto 0;

@@ -6,8 +6,8 @@
     background-position: center;
     background-color: #000;
     margin-left: 18px;
-    width: 24px;
-    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
     transition: 0.3s;
   }
   .profile__edit-button:hover {
