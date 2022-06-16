@@ -1,12 +1,14 @@
 .popup__input {
     width: 358px;
-    padding-bottom: 13px;
-    text-align: top;
+    height: 14px;
+    padding: 0 0 13px;
     margin-bottom: 30px;
+    color: #000;
     border: 0;
-    border-bottom: 1px #000000 solid;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-size: 14px;
-    color: black;
+    line-height: 14px;
+    
   }
   
   .popup__input:focus {
@@ -16,7 +18,5 @@
   @media screen and (max-width: 700px){
     .popup__input{
     width: 238px;
-    
-  }
-    
+    }
   }
