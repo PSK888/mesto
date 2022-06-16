@@ -19,7 +19,7 @@ function closePopUp (event) {
  popUp.addEventListener('click', (event) => {
     if(!event.defaultPrevented){closePopUp()} })
 
- document.querySelector('.popup__body').addEventListener('click', (event) => {event.preventDefault() })
+ document.querySelector('.popup__container').addEventListener('click', (event) => {event.preventDefault() })
 
 
  // Находим форму в DOM

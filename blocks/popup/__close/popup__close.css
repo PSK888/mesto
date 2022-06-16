@@ -1,6 +1,7 @@
 .popup__close {
     position: absolute;
-    color: white;
+    background-color:transparent;
+    overflow: hidden;
     top: -38px;
     right: -38px;
     width: 32px;
@@ -8,6 +9,7 @@
     cursor: pointer;
     background-image: url(../../../images/CloseBig.svg);
     background-repeat: no-repeat;
+    border: none;
     transition: 0.3s;
   }
   
