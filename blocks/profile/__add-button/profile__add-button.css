@@ -7,6 +7,7 @@
     width: 150px;
     height: 50px;
     border: 2px #fff solid;
+    border-radius: 2px;
     transition: 0.3s;
     padding: 0;
   }
