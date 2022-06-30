@@ -1,120 +1,106 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head> 
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Mesto Russia</title>
     <link rel="stylesheet" href="./pages/index.css" />
-        
   </head>
   <body class="page">
-    
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
     </header>
-    
+
     <main class="content">
-      
       <section class="profile">
         <div class="profile__guest">
           <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар" />
           <div class="profile__info">
             <div class="profile__personal">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button  class="profile__edit-button" type="button"></button>
+              <button class="profile__edit-button" type="button"></button>
             </div>
             <p class="profile__job">Исследователь океана</p>
           </div>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      
-      <section class="elements">
-        <div class="element">
-          <img class="element__image" src="./images/1.png" alt="Карачаевск" />
-          <div class="element__footer">
-            <h2 class="element__text">Карачаевск</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/2.png" alt="Гора Эльбрус" />
-          <div class="element__footer">
-            <h2 class="element__text">Гора Эльбрус</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/3.png" alt="Домбай" />
-          <div class="element__footer">
-            <h2 class="element__text">Домбай</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/4.jpg" alt="Байкал" />
-          <div class="element__footer">
-            <h2 class="element__text">Байкал</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/5.jpg" alt="Камчатка" />
-          <div class="element__footer">
-            <h2 class="element__text">Камчатка</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/6.jpg" alt="Алтай" />
-          <div class="element__footer">
-            <h2 class="element__text">Алтай</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/7.jpg" alt="Карелия" />
-          <div class="element__footer">
-            <h2 class="element__text">Карелия</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/8.jpg" alt="Кольский п-в" />
-          <div class="element__footer">
-            <h2 class="element__text">Кольский полуостров</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./images/9.jpg" alt="Куршская коса" />
-          <div class="element__footer">
-            <h2 class="element__text">Куршская коса</h2>
-            <button class="element__like"></button>
-          </div>
-        </div>
-      </section>
-    
+
+      <section class="elements"></section>
     </main>
-   
+
     <footer class="footer">
       <p class="footer__text">© 2022 Pavel Krupin</p>
     </footer>
- 
-  <div class="popup">
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input class="popup__input popup__name" type="text" value="Жак-Ив Кусто" >
-        <input class="popup__input popup__job" type="text" value="Исследователь океана">
-        <button class="popup__save" type="submit">Сохранить</button>
-      </form>
-      <button class="popup__close"></button>
+
+    <div class="popup popup_edit">
+      <div class="popup__container popup__container_edit">
+        <h2 class="popup__title popup__title_edit">Редактировать профиль</h2>
+        <form class="popup__form popup__form_edit">
+          <input
+            class="popup__input popup__name"
+            type="text"
+            value="Жак-Ив Кусто"
+          />
+          <input
+            class="popup__input popup__job"
+            type="text"
+            value="Исследователь океана"
+          />
+          <button class="popup__button popup__edit-button" type="submit">
+            Сохранить
+          </button>
+        </form>
+        <button class="popup__close popup_edit_close"></button>
+      </div>
     </div>
-  </div>
 
-<script src="./scripts/index.js"></script>  
+    <div class="popup popup_add">
+      <div class="popup__container popup__container_add">
+        <h2 class="popup__title popup__title_add">Новое место</h2>
+        <form class="popup__form popup__form_add">
+          <input
+            class="popup__input js_popup_img_name"
+            type="text"
+            placeholder="Название"
+            value=""
+          />
+          <input
+            class="popup__input js_popup__img_link"
+            type="url"
+            placeholder="Ссылка на картинку"
+            value=""
+          />
+          <button class="popup__button popup__add-button" type="submit">
+            Создать
+          </button>
+        </form>
+        <button class="popup__close popup_add_close"></button>
+      </div>
+    </div>
 
-</body>
+    <div class="popup popup_card">
+      <div class="popup__cardcontainer">
+        <div class="popup__cardbox">
+          <button class="popup__close popup_card_close"></button>
+          <img class="popup__image" src="#" alt="#" />
+        </div>
+        <p class="popup__text"></p>
+      </div>
+    </div>
+
+    <template class="template_card">
+      <div class="element">
+        <img class="element__image" src="#" />
+        <button type="button" class="element__del"></button>
+        <div class="element__footer">
+          <h2 class="element__text"></h2>
+          <button class="element__like"></button>
+        </div>
+      </div>
+    </template>
+
+    <script src="./scripts/index.js"></script>
+  </body>
 </html>
