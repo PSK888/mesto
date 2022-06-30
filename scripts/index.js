@@ -4,9 +4,9 @@ const popUp = document.querySelector(".popup");
 const popUpEdit = document.querySelector(".popup_edit");
 const popUpAdd = document.querySelector(".popup_add");
 const popUpCard = document.querySelector(".popup_card");
-const ClosePopUpEdit = document.querySelector(".popup__edit_close");
-const ClosePopUpAdd = document.querySelector(".popup__add_close");
-const ClosePopUpCard = document.querySelector(".popup__card_close");
+const ClosePopUpEdit = document.querySelector(".popup__close_edit");
+const ClosePopUpAdd = document.querySelector(".popup__close_add");
+const ClosePopUpCard = document.querySelector(".popup__close_add");
 const templateCard = document.querySelector(".template_card").content;
 const AddButton = document.querySelector(".popup__add-button");
 const SectionCards = document.querySelector(".elements");
@@ -156,8 +156,8 @@ function renderCards() {
   AddButton.addEventListener("click", (evt) => closePopUp(popUpAdd));
   AddButton.addEventListener("click", function (evt) {
     evt.preventDefault();
-    const InputCardName = document.querySelector(".popup__img_name");
-    const InputCardLink = document.querySelector(".popup__img_link");
+    const InputCardName = document.querySelector(".popup__input_name");
+    const InputCardLink = document.querySelector(".popup__input_link");
     AddCard({ name: InputCardName.value, link: InputCardLink.value });
     InputCardName.value = "";
     InputCardLink.value = "";
