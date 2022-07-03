@@ -1,5 +1,5 @@
 .profile {
-    max-width: 880px;
+    min-width: 880px;
     margin: auto;
     padding-top: 40px;
     display: flex;
@@ -8,7 +8,7 @@
   }
   @media screen and (max-width: 940px) {
     .profile {
-      
+      min-width: auto;
       padding-top: 42px;
       flex-direction: column;
     }
