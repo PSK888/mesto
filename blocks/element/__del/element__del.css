@@ -9,13 +9,11 @@
     border: none;
     background-repeat: no-repeat;
     background-position: center;
-   
     transition: 0.3s;
     z-index: 2;
 }
-  
+
 .element__del:hover {
     opacity: 0.4;
     cursor: pointer;
-  }
- 
+}

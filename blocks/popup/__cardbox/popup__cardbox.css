@@ -1,4 +1,4 @@
-.popup__cardbox{
+.popup__cardbox {
   display: flex;
   flex-direction: column;
 }

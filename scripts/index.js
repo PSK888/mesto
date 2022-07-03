@@ -31,7 +31,6 @@ const popUpText = document.querySelector(".popup__text");
 
 const openPopup = (popUp) => {
     popUp.classList.add("popup_opened")
-
 }
 
 const closePopUp = (popUp) => {
@@ -58,7 +57,6 @@ profileAddButton.addEventListener("click", () => {
     openPopup(popUpAdd)
     popUpInputName.value = "";
     popUpInputLink.value = "";
-
 });
 
 // Закрытие модальных окон
@@ -96,16 +94,13 @@ const renderCard = (card) => { sectionCards.prepend(addCard(card)); }
 
 initialCards.forEach((card) => { renderCard(card) });
 
-
 // Функция добавить карточку
 function addCard({ name, link }) {
     const card = templateCard.querySelector(".element").cloneNode(true);
-
     const cardImage = card.querySelector(".element__image")
     cardImage.src = link;
     cardImage.alt = name;
     cardImage.addEventListener("click", function () { openPopupCard(name, link) });
-
     const cardText = card.querySelector(".element__text")
     cardText.textContent = name;
 
@@ -139,7 +134,6 @@ popUpAddButton.addEventListener("click", function (evt) {
     renderCard({ name: popUpInputName.value, link: popUpInputLink.value });
     popUpInputName.value = "";
     popUpInputLink.value = "";
-
 });
 
 
