@@ -10,6 +10,8 @@
     border-radius: 2px;
     transition: 0.3s;
     padding: 0;
+    margin-left: 50px;
+    margin-right: 0;
   }
   .profile__add-button:hover {
     opacity: 0.6;
