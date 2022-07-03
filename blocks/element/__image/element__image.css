@@ -1,4 +1,6 @@
 .element__image {
+ background-image: url(../../../images/not_img.jpg);
+ background-size: cover;
  position: relative;
  object-position:top;
  object-fit:cover;
