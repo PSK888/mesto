@@ -41,11 +41,11 @@
       <h2 class="popup__title popup__title_edit">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="editForm" novalidate>
 
-        <input id="editNameInput" name="editName" class="popup__input popup__name" type="text" value="Жак-Ив Кусто"
+        <input id="editNameInput" name="editName" class="popup__input popup__name" autocomplete="off" type="text" value="Жак-Ив Кусто"
           minlength="2" maxlength="40" required />
         <span class="editNameInput-error popup__input-error"></span>
 
-        <input id="editJobInput" name="editJob" class="popup__input popup__job" type="text" value="Исследователь океана"
+        <input id="editJobInput" name="editJob" class="popup__input popup__job" autocomplete="off" type="text" value="Исследователь океана"
           minlength="2" maxlength="200" required />
         <span class="editJobInput-error popup__input-error"></span>
 
@@ -62,13 +62,13 @@
       <h2 class="popup__title popup__title_add">Новое место</h2>
       <form class="popup__form popup__form_add" name="addForm" novalidate>
 
-        <input id="addNameInput" name="addName" class="popup__input popup__input_name" type="text"
+        <input id="addNameInput" name="addName" class="popup__input popup__input_name" autocomplete="off" type="text"
           placeholder="Название" minlength="1" maxlength="30" required />
-        <span class="addNameInput-error popup__input_error"></span>
+        <span class="addNameInput-error popup__input-error"></span>
 
-        <input id="addLinkInput" name="addLink" class="popup__input popup__input_link" type="url"
+        <input id="addLinkInput" name="addLink" class="popup__input popup__input_link" autocomplete="off" type="url"
           placeholder="Ссылка на картинку" required />
-        <span class="addLinkInput-error popup__input_error"></span>
+        <span class="addLinkInput-error popup__input-error"></span>
 
         <button class="popup__button popup__add-button" type="submit">
           Создать
