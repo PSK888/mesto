@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mesto Russia</title>
   <link rel="stylesheet" href="./pages/index.css" />
+  <script defer src="./scripts/cards.js"></script>
+  <script defer src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
 </head>
 
 <body class="page">
@@ -21,12 +24,12 @@
         <div class="profile__info">
           <div class="profile__personal">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button aria-label="Open editForm" class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__job">Исследователь океана</p>
         </div>
       </div>
-      <button type="button" class="profile__add-button"></button>
+      <button aria-label="Open addForm" type="button" class="profile__add-button"></button>
     </section>
 
     <section class="elements"></section>
@@ -41,19 +44,19 @@
       <h2 class="popup__title popup__title_edit">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="editForm" novalidate>
 
-        <input id="editNameInput" name="editName" class="popup__input popup__name" autocomplete="off" type="text" value="Жак-Ив Кусто"
-          minlength="2" maxlength="40" required />
+        <input id="editNameInput" name="editName" class="popup__input popup__name" autocomplete="off" type="text"
+          value="Жак-Ив Кусто" minlength="2" maxlength="40" required />
         <span class="editNameInput-error popup__input-error"></span>
 
-        <input id="editJobInput" name="editJob" class="popup__input popup__job" autocomplete="off" type="text" value="Исследователь океана"
-          minlength="2" maxlength="200" required />
+        <input id="editJobInput" name="editJob" class="popup__input popup__job" autocomplete="off" type="text"
+          value="Исследователь океана" minlength="2" maxlength="200" required />
         <span class="editJobInput-error popup__input-error"></span>
 
         <button class="popup__button popup__edit-button" type="submit">
           Сохранить
         </button>
       </form>
-      <button class="popup__close popup__close_edit"></button>
+      <button aria-label="Close editForm" class="popup__close popup__close_edit"></button>
     </div>
   </div>
 
@@ -63,7 +66,7 @@
       <form class="popup__form popup__form_add" name="addForm" novalidate>
 
         <input id="addNameInput" name="addName" class="popup__input popup__input_name" autocomplete="off" type="text"
-          placeholder="Название" minlength="1" maxlength="30" required />
+          placeholder="Название" minlength="2" maxlength="30" required />
         <span class="addNameInput-error popup__input-error"></span>
 
         <input id="addLinkInput" name="addLink" class="popup__input popup__input_link" autocomplete="off" type="url"
@@ -74,14 +77,14 @@
           Создать
         </button>
       </form>
-      <button class="popup__close popup__close_add"></button>
+      <button aria-label="Close addForm" class="popup__close popup__close_add"></button>
     </div>
   </div>
 
   <div class="popup popup_card">
     <div class="popup__cardcontainer">
       <div class="popup__cardbox">
-        <button class="popup__close popup__close_card"></button>
+        <button aria-label="Close card" class="popup__close popup__close_card"></button>
         <img class="popup__image" src="#" alt="#" />
       </div>
       <p class="popup__text"></p>
@@ -91,17 +94,14 @@
   <template class="template_card">
     <div class="element">
       <img class="element__image" src="#" />
-      <button type="button" class="element__del"></button>
+      <button aria-label="Delete" type="button" class="element__del"></button>
       <div class="element__footer">
         <h2 class="element__text"></h2>
-        <button class="element__like"></button>
+        <button aria-label="Like" class="element__like"></button>
       </div>
     </div>
   </template>
 
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

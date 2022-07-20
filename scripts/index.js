@@ -4,37 +4,34 @@ const popUpEdit = document.querySelector(".popup_edit");
 const popUpAdd = document.querySelector(".popup_add");
 const popUpCard = document.querySelector(".popup_card");
 const popUps = [popUpEdit, popUpAdd, popUpCard]
-const popUpEditClose = document.querySelector(".popup__close_edit");
-const popUpAddClose = document.querySelector(".popup__close_add");
-const popUpCardClose = document.querySelector(".popup__close_card");
-const contEdit = document.querySelector(".popup__container_edit")
-const contAdd = document.querySelector(".popup__container_add")
-const contCard = document.querySelector(".popup__cardcontainer")
-const popUpContainer = [contEdit, contAdd, contCard];
 const templateCard = document.querySelector(".template_card").content;
-const popUpAddButton = document.querySelector(".popup__add-button");
 const sectionCards = document.querySelector(".elements");
 const nameInput = document.querySelector(".popup__name");
 const profileName = document.querySelector(".profile__name");
 const jobInput = document.querySelector(".popup__job");
 const profileJob = document.querySelector(".profile__job");
+const submitAddButton = document.querySelector(".popup__add-button");
 const submitEditForm = document.querySelector(".popup__edit-button");
 const popUpInputName = document.querySelector(".popup__input_name");
 const popUpInputLink = document.querySelector(".popup__input_link");
-const popUpForms = document.querySelector(".popup__form");
+const popUpEditForm = document.querySelector(".popup__form_edit");
+const popUpAddForm = document.querySelector(".popup__form_add");
 const popUpImage = document.querySelector(".popup__image");
 const popUpText = document.querySelector(".popup__text");
+const escKey = 'Escape'
 
 const openPopup = (popUp) => {
     popUp.classList.add("popup_opened")
-    reset();
-    popUpAddButton.classList.add(inactiveButtonClass);
-    popUpAddButton.setAttribute('disabled', true);
+    resetFormsErrors();
+    submitAddButton.classList.add(inactiveButtonClass);
+    submitAddButton.setAttribute('disabled', true);
+    document.addEventListener("keydown", closePopUpEsc);
 }
 
 const closePopUp = (popUp) => {
     popUp.classList.remove("popup_opened");
- }
+    document.removeEventListener("keydown", closePopUpEsc);
+}
 
 // Открытие попапа с картинкой 
 const openPopupCard = (name, link) => {
@@ -54,53 +51,43 @@ profileEditButton.addEventListener("click", () => {
 // Слушатель кнопки ADD
 profileAddButton.addEventListener("click", () => {
     openPopup(popUpAdd)
-    popUpInputName.value = "";
-    popUpInputLink.value = "";
+    popUpAddForm.reset();
 });
 
-// Закрытие модальных окон
-popUpEditClose.addEventListener("click", () => closePopUp(popUpEdit));
-popUpAddClose.addEventListener("click", () => closePopUp(popUpAdd));
-popUpCardClose.addEventListener("click", () => closePopUp(popUpCard));
-
-//закрытие попапа по клику мимо тела попапа:
-popUps.forEach((index) => {
-    index.addEventListener("click", (event) => {
-        if (event.target === event.currentTarget) {
-            closePopUp(index)
+//закрытие попапа по клику мимо тела попапа или по клику на кнопку Х:
+popUps.forEach((popUp) => {
+    popUp.addEventListener("click", (event) => {
+        if (event.target === event.currentTarget || event.target.classList.contains("popup__close")) {
+            closePopUp(popUp)
         }
-    });
+    })
 })
 
 //закрытие попапа по клику на клавишу ESC:
-popUps.forEach((index) => {
-    document.addEventListener("keydown", (event) => {
-        if (event.key === 'Escape') {
-            closePopUp(index)
-        }
-    });
-})
+function closePopUpEsc(event) {
+    if (event.key === escKey) {
+        const popUpOpen = document.querySelector(".popup_opened");
+        closePopUp(popUpOpen);
+    }
+};
 
 // Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
-function handleSubmitForm(evt) {
+function handleSubmitEditForm(evt) {
     evt.preventDefault() // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-popUpForms.addEventListener("submit", handleSubmitForm);
-popUpForms.addEventListener("submit", () => closePopUp(popUpEdit));
-submitEditForm.addEventListener("click", handleSubmitForm);
-submitEditForm.addEventListener("click", () => closePopUp(popUpEdit));
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” в Edit
+popUpEditForm.addEventListener("submit", handleSubmitEditForm);
+submitEditForm.addEventListener("click", () => { handleSubmitEditForm, closePopUp(popUpEdit) });
 
 // Массив карточек (initialCards) перенесен в отдельный cards.js
-const renderCard = (card) => { sectionCards.prepend(addCard(card)); }
+const renderCard = (card) => { sectionCards.prepend(createCard(card)); }
 initialCards.forEach((card) => { renderCard(card) });
 
 // Функция добавить карточку
-function addCard({ name, link }) {
+function createCard({ name, link }) {
     const card = templateCard.querySelector(".element").cloneNode(true);
     const cardImage = card.querySelector(".element__image")
     cardImage.src = link;
@@ -115,8 +102,8 @@ function addCard({ name, link }) {
 
     //Лайк карточек
     const likeButton = card.querySelector(".element__like");
-    likeButton.addEventListener("click", function (evt) {
-        evt.target.classList.toggle("element__like_active");
+    likeButton.addEventListener("click", function () {
+        likeButton.classList.toggle("element__like_active");
     })
 
     //Удаление карточек
@@ -125,19 +112,15 @@ function addCard({ name, link }) {
     }
 
     return card;
-
 }
 
-renderCard
-
 // Добавление карточки через popup
-popUpAddButton.addEventListener("click", (evt) => closePopUp(popUpAdd));
-popUpAddButton.addEventListener("click", function (evt) {
-    evt.preventDefault();
+submitAddButton.addEventListener("click", () => { closePopUp(popUpAdd) });
+popUpAddForm.addEventListener("submit", handleSubmitAddForm);
+
+// Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
+function handleSubmitAddForm(evt) {
+    evt.preventDefault()
     renderCard({ name: popUpInputName.value, link: popUpInputLink.value });
-    popUpInputName.value = "";
-    popUpInputLink.value = "";
-});
-
-
+}
 
