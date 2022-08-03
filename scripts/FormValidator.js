@@ -6,6 +6,7 @@ export class FormValidator {
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
+        this._errorList = this._form.querySelectorAll(".popup__input-error")
     }
 
     _showInputError(inputSelector, errorMessage) {  // Передадим текст ошибки вторым параметром errorMessage
@@ -52,8 +53,7 @@ export class FormValidator {
     };
 
     // Чистим ошибки span 
-    _resetFormsErrors() {
-        this._errorList = this._form.querySelectorAll(".popup__input-error")
+    resetFormsErrors() {
         this._errorList.forEach(error => {
             error.textContent = '';
             error.classList.remove(this._errorClass)
@@ -67,13 +67,21 @@ export class FormValidator {
     _toggleButtonState() {
         this._button = this._form.querySelector(this._buttonSelector); // Найдём в текущей форме кнопку отправки
         if (this._hasInvalidInput(this._inputList)) {  // Если есть хотя бы один невалидный инпут - сделай кнопку неактивной
-            this._button.classList.add(this._inactiveButtonClass);
-            this._button.setAttribute('disabled', true);
+            this.disableSubmitButton()  
         } else {   // иначе сделай кнопку активной
-            this._button.classList.remove(this._inactiveButtonClass);
-            this._button.removeAttribute('disabled');
+            this.enableSubmitButton()
         }
     };
+
+    disableSubmitButton(){
+        this._button.classList.add(this._inactiveButtonClass);
+        this._button.setAttribute('disabled', true);
+    }
+
+    enableSubmitButton(){
+        this._button.classList.remove(this._inactiveButtonClass);
+        this._button.removeAttribute('disabled');
+    }
 
     enableValidation() {
         this._form.addEventListener('submit', (evt) => {

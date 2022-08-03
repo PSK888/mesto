@@ -14,29 +14,32 @@ export default class Card {
 
     generateCard() {
         this._element = this._getTemplate();  // Запишем разметку в приватное поле _element. Так у других элементов появится доступ к ней.
+        this._cardImage = this._element.querySelector('.element__image')
+        this._buttonLike = this._element.querySelector('.element__like')
         this._setEventListeners(); // добавим обработчики
-        this._element.querySelector('.element__image').src = this._link; // Добавим данные
-        this._element.querySelector('.element__image').alt = this._name;
+        this._cardImage.src = this._link; // Добавим данные
+        this._cardImage.alt = this._name;
         this._element.querySelector('.element__text').textContent = this._name;
         return this._element;  // Вернём элемент наружу
     }
 
     _likeCard() {
-        this._element.querySelector('.element__like').classList.toggle('element__like_active');
+        this._buttonLike.classList.toggle('element__like_active');
     }
 
     _deleteCard() {
         this._element.remove()
+        this._element = null;
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__image').addEventListener('click', () => {
+        this._cardImage.addEventListener('click', () => {
             this._openPopupCard(this._name, this._link);
         });
         this._element.querySelector('.element__del').addEventListener('click', () => {
             this._deleteCard()
         });
-        this._element.querySelector('.element__like').addEventListener('click', () => {
+        this._buttonLike.addEventListener('click', () => {
             this._likeCard()
         });
     }
