@@ -92,34 +92,37 @@ const FormValidatorEdit = new FormValidator(popUpEditForm, config);
 FormValidatorEdit.enableValidation();
 
 
-// Форма ADD /////////////////////////////////////////////////////////////////
-
-// Фунция добавляет карточки из scripts\Utils\initialCards.js
-// Добавляем карточки из scripts\Utils\initialCards.js 
-initialCards.forEach((item) => {
-    const card = new Card(item, templateSelector, openPopupCard);// Создадим экземпляр карточки 
-    renderCard(card);// Добавляем в DOM 
-})
-
-// Добавляем карточку пользователя 
-function createUserCard() {
-    const userData = { name: popUpInputName.value, link: popUpInputLink.value };
-    const newCard = new Card(userData, templateSelector, openPopupCard);
-    renderCard(newCard)
+// Форма ADD ///////////////////////////////////////////////////////////////// 
+function createCard(item) {
+    const data = { name: item.name, link: item.link }
+    const card = new Card(data, templateSelector, openPopupCard);
+    return card.generateCard()
 }
 
 function renderCard(item) {
-    sectionCards.prepend(item.generateCard())
+    sectionCards.prepend(item)
 }
 
+initialCards.forEach((item) => { 
+    renderCard(createCard(item));
+})
 
-// Обработчик «Submit» формы ADD  
+function createUserCard() {
+    renderCard(createCard({
+        name: popUpInputName.value, 
+        link: popUpInputLink.value
+    }))
+}
+
+// Обработчик «Submit» формы ADD   
 function handleSubmitAddForm(evt) {
     createUserCard(); closePopUp(popUpAdd)
 };
-// Прикрепляем обработчик к форме: он будет следить за событием “submit” в ADD   
+
+// Прикрепляем обработчик к форме: он будет следить за событием “submit” в ADD    
 popUpAddForm.addEventListener("submit", handleSubmitAddForm);
-// Валидация формы
+
+// Валидация формы 
 const FormValidatorAdd = new FormValidator(popUpAddForm, config);
 FormValidatorAdd.enableValidation();
 
