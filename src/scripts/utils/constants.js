@@ -1,4 +1,5 @@
-const initialCards = [
+// import to index.js :
+export const items = [
     {
         name: "Архыз",
         link:
@@ -30,8 +31,7 @@ const initialCards = [
             "https://images.unsplash.com/photo-1652167934538-c0b4ab5ced1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fCVEMCVCMSVEMCVCMCVEMCVCOSVEMCVCQSVEMCVCMCVEMCVCQnxlbnwwfHwwfHw%3D&w=1000&q=80",
     },
 ];
-
-const config = {
+export const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     buttonSelector: '.popup__button',
@@ -39,5 +39,26 @@ const config = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 }
+export const popUpEditForm = document.querySelector(".popup__form_edit");
+export const popUpAddForm = document.querySelector(".popup__form_add");
 
-const escKey = 'Escape'
+export const profileEditButton = document.querySelector(".profile__edit-button");
+export const nameInput = document.querySelector(".popup__name");
+export const jobInput = document.querySelector(".popup__job");
+export const profileName = document.querySelector(".profile__name");
+export const profileJob = document.querySelector(".profile__job");
+
+export const profileAddButton = document.querySelector(".profile__add-button");
+export const popUpAddButton = document.querySelector(".popup__add-button");
+export const popUpInputName = document.querySelector(".popup__input_name");
+export const popUpInputLink = document.querySelector(".popup__input_link");
+export const cardContainer = document.querySelector(".elements")
+
+export const imagePopupSelector = '.popup_card'; 
+export const templateSelector = '.template_card';
+export const containerSelector = ".elements";
+
+// import to Popup.js:
+export const escKey = 'Escape'
+
+

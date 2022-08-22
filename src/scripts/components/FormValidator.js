@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
     constructor(form, config) { //config = scripts\Utils\validationConfig.js
         this._form = form;
         this._inputSelector = config.inputSelector;

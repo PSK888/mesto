@@ -1,12 +1,14 @@
-export default class Card {  
-    constructor(data, templateSelector, openPopupCard) { // в конструкторе будут динамические данные, для каждого экземпляра свои
+export default class Card {
+    // функция handleCardClick открывает попап с картинкой при клике на карточку.
+    constructor(data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._openPopupCard = openPopupCard
+        this._handleCardClick = handleCardClick;
     }
 
-    _getTemplate() { //Следующая задача — научить класс Card возвращать разметку. 
+    //Возвращаем разметку template элемента. 
+    _getTemplate() {
         const cardElement = document.querySelector(this._templateSelector)
             .content.querySelector('.element').cloneNode(true);
         return cardElement; // вернём DOM-элемент карточки
@@ -23,10 +25,11 @@ export default class Card {
         return this._element;  // Вернём элемент наружу
     }
 
+    // Лайк карточки
     _likeCard() {
         this._buttonLike.classList.toggle('element__like_active');
     }
-
+    // Удаление карточки
     _deleteCard() {
         this._element.remove()
         this._element = null;
@@ -34,7 +37,7 @@ export default class Card {
 
     _setEventListeners() {
         this._cardImage.addEventListener('click', () => {
-            this._openPopupCard(this._name, this._link);
+            this._handleCardClick(this._name, this._link);
         });
         this._element.querySelector('.element__del').addEventListener('click', () => {
             this._deleteCard()
