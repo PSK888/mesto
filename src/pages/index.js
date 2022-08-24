@@ -52,10 +52,10 @@ popUpEditProfile.setEventListeners();
 //Cоздаем экземпляр класса - добавление карточки
 const popUpAddCard = new PopupWithForm({
     popupSelector: popupAddSelector,
-    handleFormSubmit: () => {
+    handleFormSubmit: (data) => {
         renderCard(createCard({
-            name: popUpInputName.value,
-            link: popUpInputLink.value
+            name: data.addName,
+            link: data.addLink
         }));
     }
 })
@@ -90,9 +90,8 @@ validatorAddCard.enableValidation();
 const cardsList = new Section({
     data: items,
     renderer: (item) => {
-        const card = new Card(item, templateSelector, handleCardClick);
-        const newcard = card.generateCard();
-        cardsList.addItem(newcard);
+        const card = createCard(item);
+        renderCard(card);
     },
 }, containerSelector);
 
