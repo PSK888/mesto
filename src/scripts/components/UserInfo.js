@@ -1,11 +1,9 @@
 export default class UserInfo {
-    //Принимает в конструктор объект с селекторами двух элементов:
-    // элемента имени пользователя и элемента информации о себе.
+    //Принимает в конструктор объект с селекторами двух элементов: элемента имени пользователя и элемента информации о себе.
     constructor({ profileName, profileJob }) {
         this._profName = profileName;
         this._profJob = profileJob;
     }
-
     // Возвращает объект с данными пользователя
     getUserInfo() {
         return {
@@ -13,7 +11,6 @@ export default class UserInfo {
             job: this._profJob.textContent
         };
     }
-
     // Принимает и устанавливает данные пользователя
     setUserInfo({ name, job }) {
         this._profName.textContent = name;

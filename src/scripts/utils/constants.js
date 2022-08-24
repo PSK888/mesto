@@ -49,15 +49,14 @@ export const profileName = document.querySelector(".profile__name");
 export const profileJob = document.querySelector(".profile__job");
 
 export const profileAddButton = document.querySelector(".profile__add-button");
-export const popUpAddButton = document.querySelector(".popup__add-button");
 export const popUpInputName = document.querySelector(".popup__input_name");
 export const popUpInputLink = document.querySelector(".popup__input_link");
-export const cardContainer = document.querySelector(".elements")
 
-export const imagePopupSelector = '.popup_card'; 
+export const imagePopupSelector = '.popup_card';
 export const templateSelector = '.template_card';
 export const containerSelector = ".elements";
-
+export const popupEditSelector = '.popup_edit';
+export const popupAddSelector = ".popup_add";
 // import to Popup.js:
 export const escKey = 'Escape'
 
