@@ -96,3 +96,15 @@ const cardsList = new Section({
 }, containerSelector);
 
 cardsList.renderItems();
+
+const tweets = [
+    'Какой-то странный тред',
+    'Твит, адресованный Илону Маску',
+    'Ответ на инфоповод'
+  ];
+  
+  function consoleTweet(tweet) {
+      console.log(tweet);
+  }
+  
+  tweets.forEach(consoleTweet); 
