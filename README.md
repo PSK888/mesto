@@ -1,4 +1,4 @@
-# Проект: Место
+# Проект: Место.
 
 [Ссылка на GitHub Pages](https://psk888.github.io/mesto/)
 
