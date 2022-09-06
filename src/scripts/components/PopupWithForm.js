@@ -5,6 +5,7 @@ export default class PopupWithForm extends Popup {
     constructor({ popupSelector, handleFormSubmit }) {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
+        this._button = this._popup.querySelector('.popup__button');
         this._form = this._popup.querySelector('.popup__form');
         this._inputList = this._form.querySelectorAll('.popup__input');
     }
@@ -19,12 +20,19 @@ export default class PopupWithForm extends Popup {
         super.close();
         this._form.reset();
     }
-    // Перезаписывает родительский метод setEventListeners. 
-    // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
+    // Меняем надпись submit при обработке сервером
+    saving(data) {
+        if (data) {
+            this._button.textContent = 'Сохранение...';
+        } else if (!data) {
+            this._button.textContent = 'Сохранить';
+        }
+    }
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
+            this.saving(true);
             this._handleFormSubmit(this._getInputValues());
             this.close();
         });

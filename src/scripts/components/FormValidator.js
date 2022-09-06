@@ -8,14 +8,12 @@ export default class FormValidator {
         this._errorClass = config.errorClass;
         this._errorList = this._form.querySelectorAll(".popup__input-error");
     }
-
     _showInputError(inputSelector, errorMessage) {  // Передадим текст ошибки вторым параметром errorMessage
         const formError = this._form.querySelector(`.${inputSelector.id}-error`); // Находим элемент ошибки внутри самой функции
         inputSelector.classList.add(this._inputErrorClass);
         formError.textContent = errorMessage; // Заменим содержимое span с ошибкой на переданный параметр
         formError.classList.add(this._errorClass); // Показываем сообщение об ошибке
     };
-
     // Функция, которая удаляет класс с ошибкой
     _hideInputError(inputSelector) {
         const formError = this._form.querySelector(`.${inputSelector.id}-error`); // Находим элемент ошибки внутри самой функции
@@ -31,7 +29,6 @@ export default class FormValidator {
             this._hideInputError(inputSelector);  // Если проходит, скроем
         }
     };
-
     _setEventListeners() {
         this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector)); // Находим все поля внутри формы, сделаем из них массив методом Array.from
         this._toggleButtonState(); // Вызовем toggleButtonState , чтобы не ждать ввода данных в поля
@@ -67,17 +64,14 @@ export default class FormValidator {
             this.enableSubmitButton()
         }
     };
-
     disableSubmitButton() {
         this._button.classList.add(this._inactiveButtonClass);
         this._button.setAttribute('disabled', true);
     }
-
     enableSubmitButton() {
         this._button.classList.remove(this._inactiveButtonClass);
         this._button.removeAttribute('disabled');
     }
-
     enableValidation() {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault(); // У каждой формы отменим стандартное поведение

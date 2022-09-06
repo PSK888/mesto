@@ -1,5 +1,10 @@
 .profile__guest {
+  width: 120px;
+  height: 120px;
   display: flex;
+  background-image: url("../../../images/pen.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @media screen and (max-width: 940px) {

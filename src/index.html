@@ -17,13 +17,13 @@
   <main class="content">
     <section class="profile">
       <div class="profile__guest">
-        <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар" />
+        <img class="profile__avatar" src="#" alt="Ваш аватар" />
         <div class="profile__info">
           <div class="profile__personal">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button aria-label="Open editForm" class="profile__edit-button" type="button"></button>
           </div>
-          <p class="profile__job">Исследователь океана</p>
+          <p class="profile__job"></p>
         </div>
       </div>
       <button aria-label="Open addForm" type="button" class="profile__add-button"></button>
@@ -40,15 +40,12 @@
     <div class="popup__container popup__container_edit">
       <h2 class="popup__title popup__title_edit">Редактировать профиль</h2>
       <form class="popup__form popup__form_edit" name="editForm" novalidate>
-
         <input id="editNameInput" name="editName" class="popup__input popup__name" autocomplete="off" type="text"
           value="Жак-Ив Кусто" minlength="2" maxlength="40" required />
         <span class="editNameInput-error popup__input-error"></span>
-
         <input id="editJobInput" name="editJob" class="popup__input popup__job" autocomplete="off" type="text"
           value="Исследователь океана" minlength="2" maxlength="200" required />
         <span class="editJobInput-error popup__input-error"></span>
-
         <button class="popup__button popup__edit-button" type="submit">
           Сохранить
         </button>
@@ -61,15 +58,12 @@
     <div class="popup__container popup__container_add">
       <h2 class="popup__title popup__title_add">Новое место</h2>
       <form class="popup__form popup__form_add" name="addForm" novalidate>
-
         <input id="addNameInput" name="addName" class="popup__input popup__input_name" autocomplete="off" type="text"
           placeholder="Название" minlength="2" maxlength="30" required />
         <span class="addNameInput-error popup__input-error"></span>
-
         <input id="addLinkInput" name="addLink" class="popup__input popup__input_link" autocomplete="off" type="url"
           placeholder="Ссылка на картинку" required />
         <span class="addLinkInput-error popup__input-error"></span>
-
         <button class="popup__button popup__add-button" type="submit">
           Создать
         </button>
@@ -87,17 +81,44 @@
       <p class="popup__text"></p>
     </div>
   </div>
-<template class="template_card">
-  <div class="element">
-    <img class="element__image" src="#" />
-    <button aria-label="Delete" type="button" class="element__del"></button>
-    <div class="element__footer">
-      <h2 class="element__text"></h2>
-      <button aria-label="Like" class="element__like"></button>
+
+  <div class="popup popup_avatar">
+    <div class="popup__container popup__container_avatar">
+      <button class="popup__close" type="button"></button>
+      <h3 class="popup__title popup__title_avatar">Обновить аватар</h3>
+      <form class="popup__form popup__form_avatar" name="avatarForm" novalidate>
+        <input id="avatar" type="url" class="popup__input popup__input_avatar" name="avatar"
+          placeholder="Ссылка на картинку" required />
+        <span class="popup__input-error avatar-error"></span>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
     </div>
   </div>
-</template>
-<!--<script defer type="module" src="././pages/index.js"></script>
+
+  <div class="popup popup_delete">
+    <div class="popup__container">
+      <button class="popup__close" type="button"></button>
+      <form class="popup__form" name="deleteForm" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__button popupDel__button" type="submit">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <template class="template_card">
+    <div class="element">
+      <img class="element__image" src="#" />
+      <button aria-label="Delete" type="button" class="element__del"></button>
+      <div class="element__footer">
+        <h2 class="element__text"></h2>
+        <div class="element__column">
+          <button aria-label="Like" class="element__like"></button>
+          <p class="element__counter"></p>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!--<script defer type="module" src="././pages/index.js"></script>
 <script defer type="module" src="././scripts/utils/constants.js"></script>
 <script defer type="module" src="././scripts/components/Card.js"></script>
 <script defer type="module" src="././scripts/components/FormValidator.js"></script>

@@ -1,19 +1,35 @@
 export default class UserInfo {
-    //Принимает в конструктор объект с селекторами двух элементов: элемента имени пользователя и элемента информации о себе.
-    constructor({ profileName, profileJob }) {
+    //Принимает в конструктор объект с селекторами элементов.
+    constructor({ profileName, profileJob, profileAvatar }) {
         this._profName = profileName;
         this._profJob = profileJob;
+        this._avatar = profileAvatar;
     }
-    // Возвращает объект с данными пользователя
+    // Возвращает объект с данными пользователя.
     getUserInfo() {
         return {
             name: this._profName.textContent,
-            job: this._profJob.textContent
+            about: this._profJob.textContent,
+            avatar: this._avatar.src
         };
     }
-    // Принимает и устанавливает данные пользователя
-    setUserInfo({ name, job }) {
-        this._profName.textContent = name;
-        this._profJob.textContent = job;
+    // Получаем id 
+    getUserId() {
+        return this._userId;
+    }
+    // Устанавливаем id
+    setUserId(userId) {
+        this._userId = userId;
+    }
+    // Принимает и устанавливает данные пользователя.
+    setUserInfo(data) {
+        if (data.name) this._profName.textContent = data.name;
+        if (data.about) this._profJob.textContent = data.about;
+        this.setAvatar(data);
+    }
+    // Устанавливает аватар.
+    setAvatar(data) {
+        if (data.avatar) this._avatar.src = data.avatar;
+        if (data.name) this._avatar.alt = data.name;
     }
 }
