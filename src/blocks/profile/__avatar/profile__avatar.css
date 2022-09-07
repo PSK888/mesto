@@ -4,10 +4,12 @@
   border-radius: 50%;
   transition: .3s;
   object-fit: cover;
+  
 }
 
 .profile__avatar:hover {
   opacity: 0.2;
   cursor: pointer;
+  
 }
 

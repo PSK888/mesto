@@ -1,10 +1,7 @@
 .profile__guest {
   width: 120px;
-  height: 120px;
+  margin: 0 0 0 0;
   display: flex;
-  background-image: url("../../../images/pen.svg");
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 @media screen and (max-width: 940px) {
@@ -12,4 +9,5 @@
     flex-direction: column;
     align-items: center;
   }
+
 }
