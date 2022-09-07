@@ -159,7 +159,7 @@ function createCard(data) {
                     // card.likes = data.likes;
                     card.likeCard();
                     card.setCounter(data);
-                    console.log('putLike')
+                    //console.log('putLike')
                     if (data.likes.length < 1) {card.setCounter().remove}
                 })
                 .catch(() => {
@@ -171,7 +171,7 @@ function createCard(data) {
                 .then(data => {
                     card.likeCard();
                     card.setCounter(data);
-                    console.log('DisLike')
+                    //console.log('DisLike')
                 })
                 .catch(() => {
                     console.log('Ошибка! Не удалось снять лайк ;)');

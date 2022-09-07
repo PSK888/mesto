@@ -4,7 +4,7 @@ export default class PopupDelete extends Popup {
     constructor({popupSelector}) {
         super(popupSelector)
         this._popup = document.querySelector(popupSelector);
-        this._submitButton = this._popup.querySelector('.popupDel__button');
+        this._submitButton = this._popup.querySelector('.popup__button');
     }
     close() {
         super.close();
