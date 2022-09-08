@@ -21,8 +21,6 @@ export const profileJob = document.querySelector(".profile__job");
 export const profileAvatar = document.querySelector(".profile__avatar");
 
 export const profileAddButton = document.querySelector(".profile__add-button");
-export const popUpInputName = document.querySelector(".popup__input_name");
-export const popUpInputLink = document.querySelector(".popup__input_link");
 
 export const imagePopupSelector = '.popup_card';
 export const templateSelector = '.template_card';

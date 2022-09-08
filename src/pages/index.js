@@ -11,12 +11,15 @@ import {
     config, popUpEditForm, popUpAddForm, popUpAvatarForm, profileEditButton, nameInput,
     jobInput, profileName, profileJob, profileAvatar, profileAvatarButton, profileAddButton,
     imagePopupSelector, templateSelector, containerSelector, popupEditSelector, popupAddSelector,
-    popUpInputName, popUpInputLink
 } from "../scripts/utils/constants.js";
 
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
-    token: '8d5907dd-c90e-487c-abb3-37b80de35d33'});
+    headers: {
+        authorization: '8d5907dd-c90e-487c-abb3-37b80de35d33',
+        'Content-Type': 'application/json'
+    }
+});
 
 // Валидация форм
 const validatorEditProfile = new FormValidator(popUpEditForm, config);
@@ -36,20 +39,14 @@ const deletePopup = new PopupDelete({ popupSelector: '.popup_delete' })
 
 const popupWithEditForm = new PopupWithForm({
     popupSelector: popupEditSelector,
-    handleFormSubmit: () => {
-        user.setUserInfo({
-            name: nameInput.value,
-            about: jobInput.value
-        });
-        api.setUser({
-            name: nameInput.value,
-            about: jobInput.value
-        })
+    handleFormSubmit: (inputValues) => {
+        api.setUser(inputValues)
             .then(() => {
+                user.setUserInfo(inputValues);
                 popupWithEditForm.close();
             })
             .catch(() => {
-                console.log(`Ошибка! Не удалось изменить данные пользователя.`);
+                console.log('Ошибка! Не удалось изменить данные пользователя.');
             })
             .finally(() => {
                 popupWithEditForm.saving(false);
@@ -59,18 +56,14 @@ const popupWithEditForm = new PopupWithForm({
 
 const popupWithAddForm = new PopupWithForm({
     popupSelector: popupAddSelector,
-    handleFormSubmit: () => {
-        api.createNewCard({
-            name: popUpInputName.value,
-            link: popUpInputLink.value
-        })
-            .then((res) => {
-                const card = createCard(res);
-                cardsList.prependItem(card)
+    handleFormSubmit: (inputValues) => {
+        api.createNewCard(inputValues)
+            .then((inputValues) => {
+                cardsList.prependItem(createCard(inputValues));
                 popupWithAddForm.close();
             })
             .catch(() => {
-                console.log(`Ошибка! Не удалось добавить карточку.`);
+                console.log('Ошибка! Не удалось добавить карточку.');
             })
             .finally(() => {
                 popupWithAddForm.saving(false);
@@ -80,18 +73,18 @@ const popupWithAddForm = new PopupWithForm({
 
 const popupWithAvatarForm = new PopupWithForm({
     popupSelector: '.popup_avatar',
-    handleFormSubmit: (data) => {
-        user.setAvatar(data),
-            api.setUserAvatar(data)
-                .then(() => {
-                    popupWithAvatarForm.close();
-                })
-                .catch(() => {
-                    console.log(`Ошибка! Не удалось сменить аватар.`);
-                })
-                .finally(() => {
-                    popupWithAvatarForm.saving(false);
-                })
+    handleFormSubmit: (inputValues) => {
+        api.setUserAvatar(inputValues)
+            .then(() => {
+                user.setAvatar(inputValues);
+                popupWithAvatarForm.close();
+            })
+            .catch(() => {
+                console.log('Ошибка! Не удалось сменить аватар.');
+            })
+            .finally(() => {
+                popupWithAvatarForm.saving(false);
+            })
     }
 });
 
@@ -128,7 +121,6 @@ function createCard(data) {
         name: data.name,
         link: data.link,
         likes: data.likes,
-        //userId: 'd78eadac368e3a75ec7c1a26',
         userId: user.getUserId(),
         ownerId: data.owner._id,
         _id: data._id,
@@ -137,30 +129,26 @@ function createCard(data) {
         handleCardClick: (name, link) => {
             popupWithImage.open(name, link);
         },
-
         handleDeleteButton: (data) => {
             deletePopup.setWaitSubmit((evt) => {
                 evt.preventDefault();
-                api.deleteIdCard(data._id)
+                api.deleteIdCard(data)
                     .then(() => {
                         card.deleteCard();
                         deletePopup.close();
                     })
                     .catch(() => {
-                        console.log(`Ошибка! Не удалось удалить карточку.`);
+                        console.log('Ошибка! Не удалось удалить карточку.');
                     })
             })
             deletePopup.open();
         },
-
         putLike: () => {
+
             api.putLike(data)
-                .then(data => {
-                    // card.likes = data.likes;
-                    card.likeCard();
+                .then((data) => {
                     card.setCounter(data);
-                    //console.log('putLike')
-                    if (data.likes.length < 1) {card.setCounter().remove}
+                    card.likeCard();
                 })
                 .catch(() => {
                     console.log('Ошибка! Не удалось лайкнуть :(');
@@ -168,10 +156,9 @@ function createCard(data) {
         },
         dislike: () => {
             api.dislike(data)
-                .then(data => {
-                    card.likeCard();
+                .then((data) => {
                     card.setCounter(data);
-                    //console.log('DisLike')
+                    card.disLikeCard();
                 })
                 .catch(() => {
                     console.log('Ошибка! Не удалось снять лайк ;)');
@@ -195,8 +182,6 @@ const cardsList = new Section({
 // Загрузка карточек и данных пользователя с сервера
 Promise.all([api.getUser(), api.getInitialCards()])
     .then(([userData, cards]) => {
-        //userId = userData._id;
-        //card.userId = userData._id;
         user.setUserId(userData._id);
         user.setUserInfo(userData);
         cardsList.renderItems(cards.reverse());

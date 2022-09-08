@@ -6,14 +6,15 @@ export default class PopupWithForm extends Popup {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
         this._button = this._popup.querySelector('.popup__button');
+        this.buttonOriginalText = this._button.textContent;
         this._form = this._popup.querySelector('.popup__form');
         this._inputList = this._form.querySelectorAll('.popup__input');
     }
     // Собирает данные всех полей формы.
     _getInputValues() {
-        this._values = {};
-        this._inputList.forEach(input => this._values[input.name] = input.value);
-        return this._values;
+        this._value = {};
+        this._inputList.forEach(input => this._value[input.name] = input.value);
+        return this._value;
     }
     // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
     close() {
@@ -25,7 +26,7 @@ export default class PopupWithForm extends Popup {
         if (data) {
             this._button.textContent = 'Сохранение...';
         } else if (!data) {
-            this._button.textContent = 'Сохранить';
+            this._button.textContent = this.buttonOriginalText;
         }
     }
     setEventListeners() {
@@ -34,7 +35,6 @@ export default class PopupWithForm extends Popup {
             event.preventDefault();
             this.saving(true);
             this._handleFormSubmit(this._getInputValues());
-            this.close();
         });
     }
 }

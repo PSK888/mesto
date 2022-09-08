@@ -7,6 +7,8 @@ export default class FormValidator {
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
         this._errorList = this._form.querySelectorAll(".popup__input-error");
+        this._button = this._form.querySelector(this._buttonSelector);
+
     }
     _showInputError(inputSelector, errorMessage) {  // Передадим текст ошибки вторым параметром errorMessage
         const formError = this._form.querySelector(`.${inputSelector.id}-error`); // Находим элемент ошибки внутри самой функции
@@ -51,13 +53,11 @@ export default class FormValidator {
             error.textContent = '';
             error.classList.remove(this._errorClass)
         })
-        this._inputList.forEach(inputSelector => {
-            inputSelector.classList.remove(this._inputErrorClass)
-        })
-    }
+        this._inputList.forEach(inputSelector => this._hideInputError(inputSelector))
+        };
+    
     // Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
     _toggleButtonState() {
-        this._button = this._form.querySelector(this._buttonSelector); // Найдём в текущей форме кнопку отправки
         if (this._hasInvalidInput(this._inputList)) {  // Если есть хотя бы один невалидный инпут - сделай кнопку неактивной
             this.disableSubmitButton()
         } else {   // иначе сделай кнопку активной
@@ -73,9 +73,6 @@ export default class FormValidator {
         this._button.removeAttribute('disabled');
     }
     enableValidation() {
-        this._form.addEventListener('submit', (evt) => {
-            evt.preventDefault(); // У каждой формы отменим стандартное поведение
-        });
         this._setEventListeners()
     };
 };

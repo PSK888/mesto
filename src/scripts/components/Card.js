@@ -31,13 +31,10 @@ export default class Card {
         this._basketButton = this._element.querySelector('.element__del');
         this._counter = this._element.querySelector('.element__counter');
         this._counter.textContent = this._likes.length;
-        this._userLiked = this._likes.some(like => like._id === this._userId)
+        this._userLiked = this._likes.some(like => like._id === this._userId);
         this._setEventListeners();
         this._deleteBasketButton();
         this._isCardLiked();
-        // console.log(this._data);
-        // console.log(this._userId);
-        // console.log(this._likes);
         return this._element;  // Вернём элемент наружу
     }
     // Удаляет корзину если не мой ID
@@ -53,9 +50,17 @@ export default class Card {
             this._buttonLike.classList.add('element__like_active');
         }
     }
+    // Получаем id карточки
+    getCardId() {
+        return this._id;
+    }
     // Лайк карточки
     likeCard() {
-        this._buttonLike.classList.toggle('element__like_active');
+        this._buttonLike.classList.add('element__like_active');
+    }
+    // Удаление лайка
+    disLikeCard() {
+        this._buttonLike.classList.remove('element__like_active');
     }
     // Удаление карточки
     deleteCard() {
@@ -73,16 +78,14 @@ export default class Card {
         });
 
         this._element.querySelector('.element__del').addEventListener('click', () => {
-            this._handleDeleteButton(this._data);
+            this._handleDeleteButton(this._data)
         });
 
-        this._buttonLike.addEventListener('click', () => {
+        this._buttonLike.addEventListener('click', (evt) => {
             if (this._element.querySelector('.element__like').classList.contains('element__like_active')) {
-                this._dislike();
-                this._buttonLike.classList.remove('element__like_active');
+                this._dislike(evt);
             } else {
-                this._putLike();
-                this._buttonLike.classList.add('element__like_active');
+                this._putLike(evt);
             }
         });
     }
