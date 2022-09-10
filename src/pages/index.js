@@ -39,10 +39,10 @@ const deletePopup = new PopupDelete({ popupSelector: '.popup_delete' })
 
 const popupWithEditForm = new PopupWithForm({
     popupSelector: popupEditSelector,
-    handleFormSubmit: (inputValues) => {
-        api.setUser(inputValues)
+    handleFormSubmit: (res) => {
+        api.setUser(res)
             .then(() => {
-                user.setUserInfo(inputValues);
+                user.setUserInfo(res);
                 popupWithEditForm.close();
             })
             .catch(() => {
@@ -56,10 +56,10 @@ const popupWithEditForm = new PopupWithForm({
 
 const popupWithAddForm = new PopupWithForm({
     popupSelector: popupAddSelector,
-    handleFormSubmit: (inputValues) => {
-        api.createNewCard(inputValues)
-            .then((inputValues) => {
-                cardsList.prependItem(createCard(inputValues));
+    handleFormSubmit: (res) => {
+        api.createNewCard(res)
+            .then((res) => {
+                cardsList.prependItem(createCard(res));
                 popupWithAddForm.close();
             })
             .catch(() => {
@@ -73,10 +73,10 @@ const popupWithAddForm = new PopupWithForm({
 
 const popupWithAvatarForm = new PopupWithForm({
     popupSelector: '.popup_avatar',
-    handleFormSubmit: (inputValues) => {
-        api.setUserAvatar(inputValues)
+    handleFormSubmit: (res) => {
+        api.setUserAvatar(res)
             .then(() => {
-                user.setAvatar(inputValues);
+                user.setAvatar(res);
                 popupWithAvatarForm.close();
             })
             .catch(() => {
