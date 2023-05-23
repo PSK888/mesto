@@ -13,7 +13,7 @@
 
 ------
 
-![](https://psk888.github.io/mesto/images/screen.jpg)
+![](https://github.com/PSK888/mesto/blob/167037cbdf387409759d69d091581613e4dc04df/images/screen.jpg)
 
 
 
